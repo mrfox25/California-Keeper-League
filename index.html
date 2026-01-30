@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>California Keeper League | Est. 2008</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stadium-green: #1a4d2e;
+            --dirt-brown: #8b6f47;
+            --chalk-white: #fdfbf7;
+            --ball-red: #c1272d;
+            --leather-tan: #d4a574;
+            --night-sky: #0a1628;
+            --warning-track: #b8926e;
+            --gold: #d4af37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--night-sky);
+            color: var(--chalk-white);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(193, 39, 45, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 70%, rgba(26, 77, 46, 0.1) 0%, transparent 60%);
+            animation: lightShift 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes lightShift {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--gold);
+            z-index: 100;
+            padding: 1rem 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--chalk-white);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(180deg, rgba(10, 22, 40, 0.95) 0%, rgba(26, 77, 46, 0.4) 100%);
+            border-bottom: 4px solid var(--gold);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(255, 255, 255, 0.02) 80px,
+                    rgba(255, 255, 255, 0.02) 160px
+                );
+            animation: slideField 60s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes slideField {
+            0% { transform: translate(-50%, -50%) translateX(0); }
+            100% { transform: translate(-50%, -50%) translateX(160px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            text-shadow: 
+                3px 3px 0 var(--ball-red),
+                6px 6px 0 rgba(0, 0, 0, 0.3);
+            line-height: 1;
+        }
+
+        .subtitle {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            letter-spacing: 0.3em;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        section {
+            position: relative;
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: var(--gold);
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-subtitle {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .champions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .champion-card {
+            background: linear-gradient(135deg, rgba(26, 77, 46, 0.3) 0%, rgba(10, 22, 40, 0.5) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .champion-card::before {
+            content: '★';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 8rem;
+            color: rgba(212, 175, 55, 0.1);
+            pointer-events: none;
+        }
+
+        .champion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .champion-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .champion-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .champion-team {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            opacity: 0.85;
+            margin-bottom: 0.5rem;
+            color: var(--leather-tan);
+        }
+
+        .champion-points {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .champion-note {
+            font-style: italic;
+            font-size: 0.95rem;
+            opacity: 0.7;
+            line-height: 1.5;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: rgba(10, 22, 40, 0.5);
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--stadium-green) 0%, rgba(26, 77, 46, 0.6) 100%);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        td {
+            padding: 0.8rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            font-family: 'Crimson Text', serif;
+        }
+
+        tr:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .place-1 {
+            background: rgba(212, 175, 55, 0.3);
+            font-weight: bold;
+            color: var(--gold);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(193, 39, 45, 0.2) 0%, rgba(10, 22, 40, 0.5) 100%);
+            border: 2px solid var(--ball-red);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-category {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-leader {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .funfacts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .funfact-box {
+            background: linear-gradient(135deg, rgba(139, 111, 71, 0.2) 0%, rgba(10, 22, 40, 0.5) 100%);
+            border: 2px solid var(--leather-tan);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .funfact-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+        }
+
+        .funfact-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            border-left: 4px solid var(--ball-red);
+        }
+
+        .funfact-player {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .funfact-detail {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        footer {
+            background: var(--night-sky);
+            border-top: 2px solid var(--gold);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        footer p {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .table-container {
+                padding: 1rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#champions">Champions</a></li>
+            <li><a href="#standings">All-Time Standings</a></li>
+            <li><a href="#stats">Record Holders</a></li>
+            <li><a href="#funfacts">Fun Facts</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>CALIFORNIA KEEPER LEAGUE</h1>
+            <p class="subtitle">Est. 2008</p>
+        </div>
+    </header>
+
+    <section id="champions">
+        <div class="section-header">
+            <h2 class="section-title">League Champions</h2>
+        </div>
+        
+        <div class="champions-grid">
+            <div class="champion-card">
+                <div class="champion-year">2025</div>
+                <div class="champion-name">Brian</div>
+                <div class="champion-team">Springfield Isotopes</div>
+                <div class="champion-points">114 Points</div>
+                <div class="champion-note">Brian went wire to wire, in first place for all but 9 days. Colin and Fox finished in the top 3 but was never really close. Brian's pitching dominated.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2024</div>
+                <div class="champion-name">Smolen</div>
+                <div class="champion-team">Cruz Control</div>
+                <div class="champion-points">111.5 Points</div>
+                <div class="champion-note">Smolen finally sits atop the standings after back to back runner-ups. Hunter and DJ teased, but fell short.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2023</div>
+                <div class="champion-name">Yaffe</div>
+                <div class="champion-team">Bleedin Blue</div>
+                <div class="champion-points">116 Points</div>
+                <div class="champion-note">Yaffe dominated from start to finish, scoring the most points in league history. Most boring season? Brian finished in 2nd by 10.5 points, Chipp in 3rd 24 points behind.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2022</div>
+                <div class="champion-name">Justin</div>
+                <div class="champion-team">SunsetDistrictGiants</div>
+                <div class="champion-points">109.5 Points</div>
+                <div class="champion-note">Came down to the last day of the season with Justin holding off Smolen by 2 points. Abi in 3rd.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2021</div>
+                <div class="champion-name">Fox</div>
+                <div class="champion-team">Wake & Rake</div>
+                <div class="champion-points">113 Points</div>
+                <div class="champion-note">2 man race for most of the season, with Brian falling 5 points short, Alex in 3rd.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2019</div>
+                <div class="champion-name">Chipp</div>
+                <div class="champion-team">KluberXL</div>
+                <div class="champion-points">107 Points</div>
+                <div class="champion-note">Our closest 3 team finish ever, all scoring over 105.5 points. Parker finishes in 2nd by only half of a point and Yaffe only 1.5. Chipp becomes first back-to-back champ!</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2018</div>
+                <div class="champion-name">Chipp</div>
+                <div class="champion-team">Kluber Pool</div>
+                <div class="champion-points">97.5 Points</div>
+                <div class="champion-note">Chipp edges Hunter (hehe) by 1.5 points in lowest scoring season for a winner. DJ in 3rd.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2017</div>
+                <div class="champion-name">Justin</div>
+                <div class="champion-team">SunsetDistrictGiants</div>
+                <div class="champion-points">104 Points</div>
+                <div class="champion-note">Justin wins his 3rd league title after Aaron Judge comes out of nowhere to beat three SoCal guys: Fox, Abi and DJ.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2016</div>
+                <div class="champion-name">Colin</div>
+                <div class="champion-team">Colonel Xanders</div>
+                <div class="champion-points">106 Points</div>
+                <div class="champion-note">Colin's last title, beating out Parker and DJ with the help of a young superstar named Jose Fernandez.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2015</div>
+                <div class="champion-name">Alex</div>
+                <div class="champion-team">jackalopes</div>
+                <div class="champion-points">107 Points</div>
+                <div class="champion-note">Alex wins for 2nd time in 3 seasons, Fox and Colin round out top 3.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2014</div>
+                <div class="champion-name">Fox</div>
+                <div class="champion-team">Bay of Puigs</div>
+                <div class="champion-points">100.5 Points</div>
+                <div class="champion-note">Fox gets revenge on Justin who finished 4.5 points behind and Smolen's first top 3 finish.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2013</div>
+                <div class="champion-name">Alex</div>
+                <div class="champion-team">jackalopes</div>
+                <div class="champion-points">103.5 Points</div>
+                <div class="champion-note">Alex wins his first, DJ finishes 2nd...again! Colin in 3rd...for the fourth time in a row!</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2012</div>
+                <div class="champion-name">Fox</div>
+                <div class="champion-team">CaNobodyDoesItBetter</div>
+                <div class="champion-points">103 Points</div>
+                <div class="champion-note">Fox wins his first of many, beating out DJ and Colin in a distant 3rd.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2011</div>
+                <div class="champion-name">Justin</div>
+                <div class="champion-team">SunsetDistrictGiants</div>
+                <div class="champion-points">105 Points</div>
+                <div class="champion-note">Justin wins his 2nd title in a tough battle with Fox who finished 1.5 points behind and Colin in 3rd.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2010</div>
+                <div class="champion-name">Kevin</div>
+                <div class="champion-team">33333333</div>
+                <div class="champion-points">104 Points</div>
+                <div class="champion-note">Kevin ran the table from start to finish with the dumbest team name to win a title. Scoring the largest margin of victory in league history (24 points). Colin finishes in 2nd and Toboni in 3rd.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2009</div>
+                <div class="champion-name">Colin</div>
+                <div class="champion-team">Emperor Ishikawa</div>
+                <div class="champion-points">99 Points</div>
+                <div class="champion-note">Colin wins by 22 points over newcomer Fox and Hall of Shame member Joe Clark.</div>
+            </div>
+
+            <div class="champion-card">
+                <div class="champion-year">2008</div>
+                <div class="champion-name">Justin</div>
+                <div class="champion-team">SunsetDistrictGiants</div>
+                <div class="champion-points">99 Points</div>
+                <div class="champion-note">The inaugural season of CA Keeper went to Justin comfortably over Kevin and Abi. One team was named "Eli Manning has AIDS"</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="standings">
+        <div class="section-header">
+            <h2 class="section-title">All-Time Standings</h2>
+            <p class="section-subtitle">17 Seasons of Competition</p>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Season</th>
+                        <th>Colin</th>
+                        <th>Justin</th>
+                        <th>Stefan/Yaffe</th>
+                        <th>Fox/Jon</th>
+                        <th>DJ</th>
+                        <th>Parker</th>
+                        <th>Yaffe/Dave</th>
+                        <th>Brian/Scott/Ricky/Kevin</th>
+                        <th>Hunter/Steve/Schlef</th>
+                        <th>Chipp/Mike Toboni</th>
+                        <th>Ed/Dave/Alex/Joe</th>
+                        <th>Abi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td>8</td>
+                        <td>16</td>
+                        <td>9</td>
+                        <td>4</td>
+                        <td>6</td>
+                        <td>N/A</td>
+                        <td>7</td>
+                        <td>11</td>
+                        <td class="place-1">1</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td>16</td>
+                        <td>7</td>
+                        <td class="place-1">1</td>
+                        <td>10</td>
+                        <td>6</td>
+                        <td>N/A</td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td>10</td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>7</td>
+                        <td>2</td>
+                        <td>N/A</td>
+                        <td>5</td>
+                        <td>16</td>
+                        <td class="place-1">1</td>
+                        <td>9</td>
+                        <td>3</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td>10</td>
+                        <td>17</td>
+                        <td>3</td>
+                        <td>11</td>
+                        <td>9</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>8</td>
+                        <td class="place-1">1</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>9</td>
+                        <td>17</td>
+                        <td>11</td>
+                        <td>7.5</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>7.5</td>
+                        <td>6</td>
+                        <td>5</td>
+                        <td class="place-1">1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6</strong></td>
+                        <td>10</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>2</td>
+                        <td>11</td>
+                        <td>4</td>
+                        <td>6</td>
+                        <td>5</td>
+                        <td>3</td>
+                        <td class="place-1">1</td>
+                        <td>17</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td><strong>7</strong></td>
+                        <td>6</td>
+                        <td>11</td>
+                        <td>10</td>
+                        <td>17</td>
+                        <td>8.5</td>
+                        <td>7</td>
+                        <td class="place-1">1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>8.5</td>
+                    </tr>
+                    <tr>
+                        <td><strong>8</strong></td>
+                        <td>10</td>
+                        <td>8</td>
+                        <td>5</td>
+                        <td>11</td>
+                        <td>9</td>
+                        <td>6</td>
+                        <td>2</td>
+                        <td class="place-1">1</td>
+                        <td>4</td>
+                        <td>7</td>
+                        <td>17</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>9</strong></td>
+                        <td>17</td>
+                        <td>3</td>
+                        <td>9</td>
+                        <td class="place-1">1</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>4</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td><strong>10</strong></td>
+                        <td>2</td>
+                        <td>17</td>
+                        <td>6</td>
+                        <td>11</td>
+                        <td>9</td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td>7</td>
+                        <td class="place-1">1</td>
+                        <td>8</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td><strong>11</strong></td>
+                        <td>7</td>
+                        <td>9</td>
+                        <td>8</td>
+                        <td>3</td>
+                        <td>10</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>6</td>
+                        <td>11</td>
+                        <td>17</td>
+                        <td>4</td>
+                        <td class="place-1">1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>12</strong></td>
+                        <td>9</td>
+                        <td class="place-1">1</td>
+                        <td>7</td>
+                        <td>2</td>
+                        <td>8</td>
+                        <td>11</td>
+                        <td>10</td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>17</td>
+                        <td>5</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>13</strong></td>
+                        <td>6</td>
+                        <td class="place-1">1</td>
+                        <td>9</td>
+                        <td>17</td>
+                        <td>8</td>
+                        <td>5</td>
+                        <td>3</td>
+                        <td>11</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>10</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td><strong>14</strong></td>
+                        <td>2</td>
+                        <td>17</td>
+                        <td>11</td>
+                        <td>8</td>
+                        <td>5</td>
+                        <td>3</td>
+                        <td>9</td>
+                        <td>4</td>
+                        <td class="place-1">1</td>
+                        <td>7</td>
+                        <td>6</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td><strong>15</strong></td>
+                        <td>8</td>
+                        <td>7</td>
+                        <td>11</td>
+                        <td>3</td>
+                        <td>9</td>
+                        <td>4</td>
+                        <td>17</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>10</td>
+                        <td class="place-1">1</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td><strong>16</strong></td>
+                        <td>9</td>
+                        <td class="place-1">1</td>
+                        <td>17</td>
+                        <td>2</td>
+                        <td>10</td>
+                        <td>7</td>
+                        <td>3</td>
+                        <td>6</td>
+                        <td>11</td>
+                        <td>4</td>
+                        <td>8</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td><strong>17</strong></td>
+                        <td>11</td>
+                        <td class="place-1">1</td>
+                        <td>7</td>
+                        <td>10</td>
+                        <td>4</td>
+                        <td>9</td>
+                        <td>5</td>
+                        <td>17</td>
+                        <td>3</td>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="stats">
+        <div class="section-header">
+            <h2 class="section-title">Single-Season Record Holders</h2>
+            <p class="section-subtitle">The Best Individual Performances</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-category">Most Runs</div>
+                <div class="stat-leader">Colin</div>
+                <div class="stat-value">907 (2016) | 6x Winner</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-category">Most Home Runs</div>
+                <div class="stat-leader">Chipp</div>
+                <div class="stat-value">324 (2019) | Smolen 4x Winner</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-category">Most RBIs</div>
+                <div class="stat-leader">Parker</div>
+                <div class="stat-value">904 (2019) | Fox 4x Winner</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-category">Most Stolen Bases</div>
+                <div class="stat-leader">Yaffe</div>
+                <div class="stat-value">237 (2023) | Colin 3x Winner</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-category">Highest Batting Avg</div>
+                <div class="stat-leader">Colin</div>
+                <div class="stat-value">.296 (2008)</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-category">Most Wins</div>
+                <div class="stat-leader">Fox</div>
+                <div class="stat-value">100 (2021)</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-category">Most Saves</div>
+                <div class="stat-leader">Smolen</div>
+                <div class="stat-value">174 (2024)</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-category">Most Strikeouts</div>
+                <div class="stat-leader">Chipp</div>
+                <div class="stat-value">1,551 (2019)</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-category">Best ERA</div>
+                <div class="stat-leader">Fox</div>
+                <div class="stat-value">2.77 (2015) | 3x Winner</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-category">Best WHIP</div>
+                <div class="stat-leader">Brian</div>
+                <div class="stat-value">1.01 (2025) | Fox 5x Winner</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="funfacts">
+        <div class="section-header">
+            <h2 class="section-title">League Lore</h2>
+            <p class="section-subtitle">Memorable Moments & Tributes</p>
+        </div>
+        
+        <div class="funfacts-container">
+            <div class="funfact-box">
+                <h3 class="funfact-title">In Memoriam: Dead Keepers</h3>
+                <div class="funfact-item">
+                    <div class="funfact-player">Roy Halladay</div>
+                    <div class="funfact-detail">2008, 2009, 2010 • Abi</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Jose Fernandez</div>
+                    <div class="funfact-detail">2013, 2014, 2015 • Justin</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Tommy Hanson</div>
+                    <div class="funfact-detail">2009, 2010 • DJ</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Yordano Ventura</div>
+                    <div class="funfact-detail">2015 • DJ</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Tyler Skaggs</div>
+                    <div class="funfact-detail">2013 • Parker</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Oscar Taveras</div>
+                    <div class="funfact-detail">2013 • Fox</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Brian Matusz</div>
+                    <div class="funfact-detail">2009 • Fox</div>
+                </div>
+            </div>
+
+            <div class="funfact-box">
+                <h3 class="funfact-title">Abi's Fun Keepers</h3>
+                <div class="funfact-item">
+                    <div class="funfact-player">Chase Utley</div>
+                    <div class="funfact-detail">2010 • Round 1</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Jake Lamb</div>
+                    <div class="funfact-detail">2015, 2016, 2017</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Jedd Gyorko</div>
+                    <div class="funfact-detail">2013, 2014</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Justin Duchscherer</div>
+                    <div class="funfact-detail">2009 • Round 18</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Jermaine Dye</div>
+                    <div class="funfact-detail">2008 • Round 13</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Jon Duplantier</div>
+                    <div class="funfact-detail">Deep sleeper pick</div>
+                </div>
+            </div>
+
+            <div class="funfact-box">
+                <h3 class="funfact-title">League Legends</h3>
+                <div class="funfact-item">
+                    <div class="funfact-player">Most Championships</div>
+                    <div class="funfact-detail">Justin (4), Fox (3), Chipp (2), Alex (2)</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Most Consistent</div>
+                    <div class="funfact-detail">Colin - 6x Runs Leader, 6x in top 3</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Worst Owner in History</div>
+                    <div class="funfact-detail">Dave - Finished last in Season 11</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">The Return of Yaffe</div>
+                    <div class="funfact-detail">Season 12 - After seasons away, came back strong</div>
+                </div>
+                <div class="funfact-item">
+                    <div class="funfact-player">Brian's Dominance</div>
+                    <div class="funfact-detail">2025 - Led wire to wire, all but 9 days</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>CALIFORNIA KEEPER LEAGUE • EST. 2008</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">17 YEARS OF COMPETITION, CAMARADERIE & CHAMPIONSHIPS</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
